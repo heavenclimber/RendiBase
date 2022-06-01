@@ -2,11 +2,15 @@ import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import logo from '../Assets/Images/logo.png'
+
 export default function Header() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand>Rendi's Shop</Navbar.Brand>
+        <Navbar.Brand>
+          <img src={logo} style={{ width: 100,  }} />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -23,8 +27,12 @@ export default function Header() {
               <NavDropdown.Divider />
               <NavDropdown.Item>Separated link</NavDropdown.Item>
             </NavDropdown> */}
-            <Nav.Link href="report" style={{ color: "red", fontWeight: "bold" }} to={"/login/"}>
-                Logout
+            <Nav.Link
+              href="report"
+              style={{ color: "red", fontWeight: "bold" }}
+              to={"/login/"}
+            >
+              Logout
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
