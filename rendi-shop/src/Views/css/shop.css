@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+.logincontainer{display:flex; align-items:center !important; justify-content: center !important; height: 90vh;}
+
+a{
+    color: grey;
+    text-decoration: none;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+  }
+
+  
+
+  .filter-container{
+      padding: 30px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+  }
+
+  .search-container {
+    background: #fff;
+    height: 30px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    /*box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      inset -7px -7px 10px 0px rgba(0,0,0,.1),
+     7px 7px 20px 0px rgba(0,0,0,.1),
+     4px 4px 5px 0px rgba(0,0,0,.1);
+     text-shadow:  0px 0px 6px rgba(255,255,255,.3),
+                -4px -4px 6px rgba(116, 125, 136, .2);
+    text-shadow: 2px 2px 3px rgba(255,255,255,0.5);*/
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+      -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .search-container:hover > .search-input {
+    width: 400px;
+  }
+
+  .search-container:focus ~ .search-input {
+    width: 400px;
+  }
+
+  .search-input:focus{
+    width: 400px;
+  }
+
+  @media(max-width:600px){
+    .search-container:hover > .search-input {
+        width: 100%;
+      }
+    
+      .search-container:focus ~ .search-input {
+        width: 100%;
+      }
+    
+      .search-input:focus{
+        width: 100%;
+      }
+  }
+  
+  .search-container .search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+  }
+  
+  .search-container .search-btn  {
+    color: #5cbdbb;
+  }
+  
+  @keyframes hoverShake {
+    0% {
+      transform: skew(0deg, 0deg);
+    }
+    25% {
+      transform: skew(5deg, 5deg);
+    }
+    75% {
+      transform: skew(-5deg, -5deg);
+    }
+    100% {
+      transform: skew(0deg, 0deg);
+    }
+  }
+/*   
+  .search-container:hover {
+    animation: hoverShake 0.15s linear 3;
+  }
+   */
+  
+
+  .main-card-container{
+      display: flex;
+      gap:20px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 25px;
+  }
+  
+  .card-container {
+    position: relative;
+  }
+  
+  .card-container .card {
+    position: relative;
+    width: 320px;
+    height: 450px;
+    background: #232323;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .card-container .card:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #9bdc28;
+    clip-path: circle(150px at 80% 20%);
+    transition: 0.5s ease-in-out;
+  }
+  
+  .card-container .card:hover:before {
+    clip-path: circle(300px at 80% -20%);
+  }
+  
+  .card-container .card:after {
+    content: "TBMJ";
+    position: absolute;
+    top: 40%;
+    left: -10%;
+    font-size: 8em;
+    font-weight: 800;
+    font-style: italic;
+    color: rgba(255, 255, 25, 0.05);
+  }
+  
+  .card-container .card .imgBx {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10000;
+    width: 100%;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .card-container .card:hover .imgBx {
+    top: 28%;
+    transform: translateY(0%);
+   
+  }
+  
+  .card-container .card .imgBx img {
+    position: absolute;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%) rotate(-25deg); */
+  }
+
+  .card-container .card .imgBx p {
+    position: absolute;
+    font-size: 69px;
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%) rotate(-25deg); */
+    /* width: 270px; */
+  }
+
+
+  
+  .card-container .card .contentBx {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    transition: 1s;
+    z-index: 10;
+  }
+  
+  .card-container .card:hover .contentBx {
+    height: 210px;
+  }
+  
+  .card-container .card .contentBx h2 {
+    position: relative;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    margin: 0;
+  }
+  .card-container .card .contentBx b {
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #fff;
+    /* margin-bottom: 10px; */
+  }
+  
+  .card-container .card .contentBx .size,
+  .card-container .card .contentBx .color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
+    transition: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .card-container .card:hover .contentBx .size {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.5s;
+  }
+  
+  .card-container .card:hover .contentBx .color {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.6s;
+  }
+  
+  .card-container .card .contentBx .size h3,
+  .card-container .card .contentBx .color h3 {
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: 10px;
+  }
+  
+  .card-container .card .contentBx .size span {
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    display: inline-block;
+    color: #111;
+    background: #fff;
+    margin: 0 5px;
+    transition: 0.5s;
+    color: #111;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .card-container .card .contentBx .size span:hover {
+    background: #9bdc28;
+  }
+  
+  .card-container .card .contentBx .color span {
+    width: 20px;
+    height: 20px;
+    background: #ff0;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .card-container .card .contentBx .color span:nth-child(2) {
+    background: #9bdc28;
+  }
+  
+  .card-container .card .contentBx .color span:nth-child(3) {
+    background: #03a9f4;
+  }
+  
+  .card-container .card .contentBx .color span:nth-child(4) {
+    background: #e91e63;
+  }
+  
+  .card-container .card .contentBx a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff;
+    border-radius: 4px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #111;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 0.5s;
+    margin-top: 10px;
+  }
+  
+  .card-container .card:hover .contentBx a {
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay: 0.75s;
+  }
+  
