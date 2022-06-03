@@ -78,14 +78,22 @@ export default function Home() {
   const removeItem = (i) => {
     setSelectedId(i);
     setDeleteModal(true);
-  }
+  };
+
+  const sellItem = (i) => {
+    console.log("JUAL"+i);
+  };
 
   return (
     <div
       className="main-body"
       style={{
         height:
-          openAddModal == true || openEditModal == true || openDeleteModal==true ? "100vh" : "auto",
+          openAddModal == true ||
+          openEditModal == true ||
+          openDeleteModal == true
+            ? "100vh"
+            : "auto",
       }}
     >
       <Header />
@@ -153,8 +161,16 @@ export default function Home() {
 
                             <div className="btnContainer">
                               <a onClick={() => openEdit(i)}>Edit Now</a>
-                              <a className="removebtn" onClick={() => removeItem(i)}>Remove</a>
+                              <a
+                                className="removebtn"
+                                onClick={() => removeItem(i)}
+                              >
+                                Remove
+                              </a>
                             </div>
+                          </div>
+                          <div className="sellbtncontainer">
+                            <a>Sell</a>
                           </div>
                         </div>
                       </div>
@@ -180,8 +196,16 @@ export default function Home() {
                           </div>
                           <div className="btnContainer">
                             <a onClick={() => openEdit(i)}>Edit Now</a>
-                            <a className="removebtn" onClick={() => removeItem(i)}>Remove</a>
+                            <a
+                              className="removebtn"
+                              onClick={() => removeItem(i)}
+                            >
+                              Remove
+                            </a>
                           </div>
+                        </div>
+                        <div className="sellbtncontainer">
+                          <a onClick={() => sellItem(i)}>Sell</a>
                         </div>
                       </div>
                     </div>
@@ -198,8 +222,13 @@ export default function Home() {
       {openEditModal ? (
         <EditModal modalState={setEditModal} data={data} id={selectedId} />
       ) : null}
-       {openDeleteModal ? (
-        <DeleteModal modalState={setDeleteModal} data={data} id={selectedId} refresh={setOpenModal} />
+      {openDeleteModal ? (
+        <DeleteModal
+          modalState={setDeleteModal}
+          data={data}
+          id={selectedId}
+          refresh={setOpenModal}
+        />
       ) : null}
       {/* <button onClick={sendTodo}>click here to send</button> */}
       <Button modalState={setOpenModal} />
