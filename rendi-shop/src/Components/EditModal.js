@@ -11,7 +11,7 @@ function EditModal({ modalState, data, id }) {
   const [image, setImage] = useState(data[id].image);
   const [type, setType] = useState(data[id].type);
 
-  const [dataSet, setDataSet] = useState({});
+  const [dataSet, setDataSet] = useState();
 
   const [tempData, setTempData] = useState(data);
 
@@ -24,22 +24,14 @@ function EditModal({ modalState, data, id }) {
 
   useEffect(() => {
     {
-      dataSet.id !== undefined &&
-      dataSet.name !== null &&
-      dataSet.price !== null &&
-      dataSet.type !== null &&
-      dataSet.jumlah !== null &&
-      dataSet.image !== null
-        ? firebase
+      dataSet !== undefined && dataSet!==null
+        ? 
+        firebase
             .firestore()
             .collection("data")
             .doc("NwE7sn9FEaKhmHGzXwmY")
-            // .set("item"[dataSet])
-            // .then((documentReference) => {
-            //   console.log("document reference ID", documentReference.id);
-            // })
-            .update({
-              item: firebase.firestore.FieldValue.arrayUnion(dataSet),
+            .set({
+              item: dataSet,
             })
             .then((documentReference) => {
               modalState(false);
@@ -47,7 +39,8 @@ function EditModal({ modalState, data, id }) {
             .catch((error) => {
               console.log(error.message);
             })
-        : console.log("kosong");
+
+        : <></>;
     }
   }, [dataSet]);
   
@@ -77,14 +70,24 @@ function EditModal({ modalState, data, id }) {
     } else if (image == "" || image == null || image == undefined) {
       alert.show("Gambar tidak boleh kosong");
     } else {
-      setDataSet({
-        id: "0",
-        name: name,
-        price: price,
-        type: type,
-        jumlah: qty,
-        image: image,
-      });
+        console.log("hai")
+        let beforeSubmit = tempData
+       
+        beforeSubmit[id].name=name
+        beforeSubmit[id].price=price
+        beforeSubmit[id].type=type
+        beforeSubmit[id].jumlah=qty
+        beforeSubmit[id].image=image
+        setDataSet(beforeSubmit)
+
+    //   setDataSet({
+    //     id: "0",
+    //     name: name,
+    //     price: price,
+    //     type: type,
+    //     jumlah: qty,
+    //     image: image,
+    //   });
     }
   };
 

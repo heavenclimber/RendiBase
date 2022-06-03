@@ -44,7 +44,7 @@ function AddModal({ edited, modalState, newid }) {
             .catch((error) => {
               console.log(error.message);
             })
-        : console.log("kosong");
+        :  <></>
     }
   }, [dataSet]);
   
