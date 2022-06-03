@@ -1,14 +1,17 @@
 import React, { Component, useState, useEffect } from "react";
+
 import Header from "../Components/Header";
 import Button from "../Components/Button";
 import AddModal from "../Components/AddModal";
 import EditModal from "../Components/EditModal";
+import DeleteModal from "../Components/DeleteModal";
 
 import firebase from "../firebase/index";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useAlert } from "react-alert";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -18,8 +21,13 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState("");
 
   const [openAddModal, setOpenModal] = useState(false);
+
   const [openEditModal, setEditModal] = useState(false);
   const [selectedId, setSelectedId] = useState(0);
+
+  const [openDeleteModal, setDeleteModal] = useState(false);
+
+  const alert = useAlert();
 
   useEffect(() => {
     getData();
@@ -63,12 +71,23 @@ export default function Home() {
   };
 
   const openEdit = (i) => {
-    setSelectedId(i)
-    setEditModal(true)
+    setSelectedId(i);
+    setEditModal(true);
   };
 
+  const removeItem = (i) => {
+    setSelectedId(i);
+    setDeleteModal(true);
+  }
+
   return (
-    <div className="main-body" style={{height: openAddModal==true || openEditModal==true ? "100vh" : "auto"}}>
+    <div
+      className="main-body"
+      style={{
+        height:
+          openAddModal == true || openEditModal == true || openDeleteModal==true ? "100vh" : "auto",
+      }}
+    >
       <Header />
       {/* <div className="filter-container">
         <input
@@ -110,10 +129,39 @@ export default function Home() {
         </form> */}
         {/* {data.length===0 ? null : data.map((item,i)=> <div key={i}>{item.name + i}</div>)} */}
 
-        {data ? <div className="main-card-container">
-          {searchInput !== ""
-            ? data.map((item, i) => {
-                if (item.name.toUpperCase().includes(searchInput)) {
+        {data ? (
+          <div className="main-card-container">
+            {searchInput !== ""
+              ? data.map((item, i) => {
+                  if (item.name.toUpperCase().includes(searchInput)) {
+                    return (
+                      <div className="card-container" key={i}>
+                        <div className="card">
+                          <div className="imgBx">
+                            <img src={item.image} />
+                          </div>
+                          <div className="contentBx">
+                            <h2>{item.name}</h2>
+                            <div className="color">
+                              <b style={{ marginRight: 5 }}>IDR</b>
+                              <b>{item.price}</b>
+                            </div>
+                            <div className="color">
+                              <b style={{ marginRight: 5 }}>Jumlah: </b>
+                              <b>{item.jumlah}</b>
+                            </div>
+
+                            <div className="btnContainer">
+                              <a onClick={() => openEdit(i)}>Edit Now</a>
+                              <a className="removebtn" onClick={() => removeItem(i)}>Remove</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                })
+              : data.map((item, i) => {
                   return (
                     <div className="card-container" key={i}>
                       <div className="card">
@@ -130,42 +178,29 @@ export default function Home() {
                             <b style={{ marginRight: 5 }}>Jumlah: </b>
                             <b>{item.jumlah}</b>
                           </div>
-                          <a onClick={()=>openEdit(i)}>Edit Now</a>
+                          <div className="btnContainer">
+                            <a onClick={() => openEdit(i)}>Edit Now</a>
+                            <a className="removebtn" onClick={() => removeItem(i)}>Remove</a>
+                          </div>
                         </div>
                       </div>
                     </div>
                   );
-                }
-              })
-            : data.map((item, i) => {
-             
-                return (
-                  <div className="card-container" key={i}>
-                    <div className="card">
-                      <div className="imgBx">
-                        <img src={item.image} />
-                      </div>
-                      <div className="contentBx">
-                        <h2>{item.name}</h2>
-                        <div className="color">
-                          <b style={{ marginRight: 5 }}>IDR</b>
-                          <b>{item.price}</b>
-                        </div>
-                        <div className="color">
-                          <b style={{ marginRight: 5 }}>Jumlah: </b>
-                          <b>{item.jumlah}</b>
-                        </div>
-                        <a onClick={()=>openEdit(i)}>Edit Now</a>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-     
-        </div> : <div>Data Empty</div>}
+                })}
+          </div>
+        ) : (
+          <div>Data Empty</div>
+        )}
       </div>
-      {openAddModal ? <AddModal modalState={setOpenModal} newid={data ? data.length : 0} /> : null}
-      {openEditModal ? <EditModal modalState={setEditModal} data={data} id={selectedId}/> : null}
+      {openAddModal ? (
+        <AddModal modalState={setOpenModal} newid={data ? data.length : 0} />
+      ) : null}
+      {openEditModal ? (
+        <EditModal modalState={setEditModal} data={data} id={selectedId} />
+      ) : null}
+       {openDeleteModal ? (
+        <DeleteModal modalState={setDeleteModal} data={data} id={selectedId} refresh={setOpenModal} />
+      ) : null}
       {/* <button onClick={sendTodo}>click here to send</button> */}
       <Button modalState={setOpenModal} />
     </div>
