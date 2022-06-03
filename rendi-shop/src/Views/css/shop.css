@@ -383,4 +383,31 @@ a{
     border-radius: 15px;
     
   }
+
+  .btnContainer{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .removebtn{
+    background-color: #de4c4c !important;
+    color: white !important;
+  }
+
+  .removebtn:hover{
+    background-color: #b61515 !important;
+  }
+
+  .deletebtnrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .deletebtnrow button{
+   min-width: 100px;
+  }
   
