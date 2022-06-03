@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import Header from "../Components/Header";
 import Button from "../Components/Button";
 import AddModal from "../Components/AddModal";
+import EditModal from "../Components/EditModal";
 
 import firebase from "../firebase/index";
 import { Link } from "react-router-dom";
@@ -17,6 +18,8 @@ export default function Home() {
   const [searchInput, setSearchInput] = useState("");
 
   const [openAddModal, setOpenModal] = useState(false);
+  const [openEditModal, setEditModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(0);
 
   useEffect(() => {
     getData();
@@ -59,8 +62,13 @@ export default function Home() {
     //   });
   };
 
+  const openEdit = (i) => {
+    setSelectedId(i)
+    setEditModal(true)
+  };
+
   return (
-    <div className="main-body" style={{height: openAddModal==true ? "100vh" : "auto"}}>
+    <div className="main-body" style={{height: openAddModal==true || openEditModal==true ? "100vh" : "auto"}}>
       <Header />
       {/* <div className="filter-container">
         <input
@@ -122,7 +130,7 @@ export default function Home() {
                             <b style={{ marginRight: 5 }}>Jumlah: </b>
                             <b>{item.jumlah}</b>
                           </div>
-                          <a href="#">Edit Now</a>
+                          <a onClick={()=>openEdit(i)}>Edit Now</a>
                         </div>
                       </div>
                     </div>
@@ -147,7 +155,7 @@ export default function Home() {
                           <b style={{ marginRight: 5 }}>Jumlah: </b>
                           <b>{item.jumlah}</b>
                         </div>
-                        <a href="#">Edit Now</a>
+                        <a onClick={()=>openEdit(i)}>Edit Now</a>
                       </div>
                     </div>
                   </div>
@@ -157,6 +165,7 @@ export default function Home() {
         </div> : <div>Data Empty</div>}
       </div>
       {openAddModal ? <AddModal modalState={setOpenModal} newid={data ? data.length : 0} /> : null}
+      {openEditModal ? <EditModal modalState={setEditModal} data={data} id={selectedId}/> : null}
       {/* <button onClick={sendTodo}>click here to send</button> */}
       <Button modalState={setOpenModal} />
     </div>
