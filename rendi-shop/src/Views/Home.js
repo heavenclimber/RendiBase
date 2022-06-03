@@ -1,5 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import Header from "../Components/Header";
+import Button from "../Components/Button";
+import AddModal from "../Components/AddModal";
 
 import firebase from "../firebase/index";
 import { Link } from "react-router-dom";
@@ -14,9 +16,11 @@ export default function Home() {
   const [inputs, setInputs] = useState(initstate);
   const [searchInput, setSearchInput] = useState("");
 
+  const [openAddModal, setOpenModal] = useState(false);
+
   useEffect(() => {
     getData();
-  }, []);
+  }, [openAddModal]);
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue.toUpperCase());
@@ -44,7 +48,6 @@ export default function Home() {
 
   const sendTodo = () => {
     let newdata = data;
-    console.log(newdata);
     // firebase.db
     //   .collection("data").doc(NwE7sn9FEaKhmHGzXwmY)
     //   .update({ name: "first todo", price: 1000 })
@@ -57,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{backgroundColor:'#E8E8E8'}}>
+    <div className="main-body" style={{height: openAddModal==true ? "100vh" : "auto"}}>
       <Header />
       {/* <div className="filter-container">
         <input
@@ -67,16 +70,16 @@ export default function Home() {
         />
       </div> */}
       <div className="filter-container">
-        <div class="search-container">
+        <div className="search-container">
           <input
             type="text"
             icon="search"
             name="search"
             placeholder="Search..."
-            class="search-input"
+            className="search-input"
             onChange={(e) => searchItems(e.target.value)}
           />
-          <a href="#" class="search-btn">
+          <a href="#" className="search-btn">
             <FontAwesomeIcon icon={faSearch} />
           </a>
         </div>
@@ -99,23 +102,23 @@ export default function Home() {
         </form> */}
         {/* {data.length===0 ? null : data.map((item,i)=> <div key={i}>{item.name + i}</div>)} */}
 
-        <div className="main-card-container">
+        {data ? <div className="main-card-container">
           {searchInput !== ""
             ? data.map((item, i) => {
                 if (item.name.toUpperCase().includes(searchInput)) {
                   return (
-                    <div class="card-container" key={i}>
-                      <div class="card">
-                        <div class="imgBx">
+                    <div className="card-container" key={i}>
+                      <div className="card">
+                        <div className="imgBx">
                           <img src={item.image} />
                         </div>
-                        <div class="contentBx">
+                        <div className="contentBx">
                           <h2>{item.name}</h2>
-                          <div class="color">
+                          <div className="color">
                             <b style={{ marginRight: 5 }}>IDR</b>
                             <b>{item.price}</b>
                           </div>
-                          <div class="color">
+                          <div className="color">
                             <b style={{ marginRight: 5 }}>Jumlah: </b>
                             <b>{item.jumlah}</b>
                           </div>
@@ -127,19 +130,20 @@ export default function Home() {
                 }
               })
             : data.map((item, i) => {
+             
                 return (
-                  <div class="card-container" key={i}>
-                    <div class="card">
-                      <div class="imgBx">
+                  <div className="card-container" key={i}>
+                    <div className="card">
+                      <div className="imgBx">
                         <img src={item.image} />
                       </div>
-                      <div class="contentBx">
+                      <div className="contentBx">
                         <h2>{item.name}</h2>
-                        <div class="color">
+                        <div className="color">
                           <b style={{ marginRight: 5 }}>IDR</b>
                           <b>{item.price}</b>
                         </div>
-                        <div class="color">
+                        <div className="color">
                           <b style={{ marginRight: 5 }}>Jumlah: </b>
                           <b>{item.jumlah}</b>
                         </div>
@@ -149,9 +153,12 @@ export default function Home() {
                   </div>
                 );
               })}
-        </div>
+     
+        </div> : <div>Data Empty</div>}
       </div>
-      <button onClick={sendTodo}>click here to send</button>
+      {openAddModal ? <AddModal modalState={setOpenModal} newid={data ? data.length : 0} /> : null}
+      {/* <button onClick={sendTodo}>click here to send</button> */}
+      <Button modalState={setOpenModal} />
     </div>
   );
 }

@@ -11,10 +11,18 @@ a{
     font-family: "Poppins", sans-serif;
   }
 
+
+  .main-body{
+      background-color: #e8e8e8;
+      min-height: 100vh;
+      /* max-height: 100vh; */
+      overflow: hidden;
+  }
+
   .brand{
       width: 100px;
       height: 100px;
-      z-index: 1000000000000000000000000000000;
+      z-index: 1000;
   }
 
   
@@ -123,6 +131,7 @@ a{
   
   .card-container {
     position: relative;
+    cursor: pointer;
   }
   
   .card-container .card {
@@ -165,7 +174,7 @@ a{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10000;
+    z-index: 100;
     width: 100%;
     transition: 0.5s;
     display: flex;
@@ -325,5 +334,53 @@ a{
     opacity: 1;
     transform: translateY(0px);
     transition-delay: 0.75s;
+  }
+
+  .add-button-container {
+    flex: 1;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    padding: 15px;
+    z-index: 150;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .add-button{
+    background-color: #de4c4c;
+    border-radius: 5px;
+    padding: 15px 20px 15px 20px;
+    width: 50%;
+    color: white;
+    font-weight: bold;
+    border-color: grey;
+    transition: 0.5s;
+  }
+
+  .add-button:hover{
+    background-color: #b61515;
+  }
+
+  .add-modal-container {
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: rgba(70, 70, 70, 0.479);
+    position: absolute;
+    top: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-modal-box{
+    background-color: white;
+    min-width: 400px;
+    padding: 50px;
+    border-radius: 15px;
+    
   }
   
