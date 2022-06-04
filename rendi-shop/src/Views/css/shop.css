@@ -442,6 +442,12 @@ a{
     background-color: #0070a4;
   }
 
+  .sellbtncontainer .disabled{
+    pointer-events: none;
+    background-color: grey;
+    color: white;
+  }
+
   .spanid{
     font-weight: 300;
     font-size: medium;
