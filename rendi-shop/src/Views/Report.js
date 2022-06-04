@@ -32,19 +32,34 @@ export default function Report() {
   return (
     <div className="main-body">
       <Header />
-      <h2 style={{textAlign:'center', padding:"20px", paddingBottom:"10px"}}>Report Penjualan</h2>
+      <h2
+        style={{ textAlign: "center", padding: "20px", paddingBottom: "10px" }}
+      >
+        Report Penjualan
+      </h2>
       {data ? (
         <div className="reportcontainer">
-       
           {data.map((item, i) => {
-            return <div className="reportbox">
-
-            <h5>{item.name}<span className="reportid"> #{item.id}</span></h5>
-            <div>Jumlah yang dibeli: <span className="spanreport">{item.jumlah}</span></div>
-            <div>Tanggal Pembelian: <span className="spanreport">{item.date}</span></div>
-            <div>Total yang dibayar: <span className="spanreport">{item.bayar}</span></div>
-
-            </div>;
+            return (
+              <div className="reportbox">
+                <h5>
+                  {item.name}
+                  <span className="reportid"> #{item.id}</span>
+                </h5>
+                <div>
+                  Jumlah yang dibeli:{" "}
+                  <span className="spanreport">{item.jumlah}</span>
+                </div>
+                <div>
+                  Tanggal Pembelian:{" "}
+                  <span className="spanreport">{item.date}</span>
+                </div>
+                <div>
+                  Total yang dibayar:{" "}
+                  <span className="spanreport">{item.bayar}</span>
+                </div>
+              </div>
+            );
           })}
         </div>
       ) : (

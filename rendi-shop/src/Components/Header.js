@@ -20,18 +20,10 @@ export default function Header() {
             <Nav.Link href="report" to={"/report/"}>
               Report
             </Nav.Link>
-            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item>Action</NavDropdown.Item>
-              <NavDropdown.Item>Another action</NavDropdown.Item>
-              <NavDropdown.Item>Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>Separated link</NavDropdown.Item>
-            </NavDropdown> */}
             <Nav.Link
-              href="report"
+              href="login"
               style={{ color: "red", fontWeight: "bold" }}
-              to={"/login/"}
-            >
+              to={"/login/"}>
               Logout
             </Nav.Link>
           </Nav>
