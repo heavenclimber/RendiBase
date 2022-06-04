@@ -12,10 +12,9 @@ const Nav = () => {
   return (
     <div>
       <Router>
-        
         <Routes>
           <Route exact path="/login" element={<Login setUser={setUser} />} />
-          <Route exact path="/" element={<Home user={user} />} />
+          <Route exact path="/" element={<Login setUser={setUser} />} />
           <Route path={"/home"} element={<Home user={user} />} />
           <Route path={"/report"} element={<Report />} />
         </Routes>
