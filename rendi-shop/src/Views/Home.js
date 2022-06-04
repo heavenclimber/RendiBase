@@ -5,6 +5,7 @@ import Button from "../Components/Button";
 import AddModal from "../Components/AddModal";
 import EditModal from "../Components/EditModal";
 import DeleteModal from "../Components/DeleteModal";
+import SellModal from "../Components/SellModal";
 
 import firebase from "../firebase/index";
 import { Link } from "react-router-dom";
@@ -26,6 +27,8 @@ export default function Home() {
   const [selectedId, setSelectedId] = useState(0);
 
   const [openDeleteModal, setDeleteModal] = useState(false);
+
+  const [openSellModal, setSellModal] = useState(false);
 
   const alert = useAlert();
 
@@ -80,8 +83,11 @@ export default function Home() {
     setDeleteModal(true);
   };
 
+  
+
   const sellItem = (i) => {
-    console.log("JUAL"+i);
+    setSelectedId(i);
+    setSellModal(true)
   };
 
   return (
@@ -91,7 +97,8 @@ export default function Home() {
         height:
           openAddModal == true ||
           openEditModal == true ||
-          openDeleteModal == true
+          openDeleteModal == true ||
+          openSellModal == true
             ? "100vh"
             : "auto",
       }}
@@ -149,7 +156,10 @@ export default function Home() {
                             <img src={item.image} />
                           </div>
                           <div className="contentBx">
-                            <h2>{item.name}</h2>
+                            <h2>
+                              <span className="spanid">#{i} </span>
+                              {item.name}
+                            </h2>
                             <div className="color">
                               <b style={{ marginRight: 5 }}>IDR</b>
                               <b>{item.price}</b>
@@ -185,7 +195,10 @@ export default function Home() {
                           <img src={item.image} />
                         </div>
                         <div className="contentBx">
-                          <h2>{item.name}</h2>
+                          <h2>
+                            <span className="spanid">#{i} </span>
+                            {item.name}
+                          </h2>
                           <div className="color">
                             <b style={{ marginRight: 5 }}>IDR</b>
                             <b>{item.price}</b>
@@ -229,6 +242,9 @@ export default function Home() {
           id={selectedId}
           refresh={setOpenModal}
         />
+      ) : null}
+      {openSellModal ? (
+        <SellModal modalState={setSellModal} data={data} id={selectedId} />
       ) : null}
       {/* <button onClick={sendTodo}>click here to send</button> */}
       <Button modalState={setOpenModal} />

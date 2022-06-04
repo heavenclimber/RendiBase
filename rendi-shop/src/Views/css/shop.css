@@ -231,6 +231,9 @@ a{
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
   }
   .card-container .card .contentBx b {
@@ -437,4 +440,11 @@ a{
     
   .sellbtncontainer a:hover{
     background-color: #0070a4;
+  }
+
+  .spanid{
+    font-weight: 300;
+    font-size: medium;
+    color: rgb(184, 184, 184);
+    margin-right: 5px;
   }
