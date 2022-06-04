@@ -131,7 +131,6 @@ a{
   
   .card-container {
     position: relative;
-    cursor: pointer;
   }
   
   .card-container .card {
@@ -327,6 +326,7 @@ a{
     margin-top: 10px;
     text-decoration: none;
     font-weight: 600;
+    cursor: pointer;
     color: #111;
     opacity: 0;
     transform: translateY(50px);
@@ -431,9 +431,10 @@ a{
     background-color: #03a9f4;
     width: 70%;
     padding: 10px;
+    cursor: pointer;
     text-align: center;
     border-radius: 10px;
-    z-index: 200;
+    z-index: 100;
     transition: 0.4s;
   }
 
@@ -453,4 +454,37 @@ a{
     font-size: medium;
     color: rgb(184, 184, 184);
     margin-right: 5px;
+  }
+
+  .reportcontainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .reportbox{
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+  }
+
+  .reportbox div{
+   color: grey;
+  }
+
+  .reportid{
+    font-weight: 300;
+    font-size: medium;
+    color: grey;
+  }
+
+  .spanreport{
+    font-weight: 600;
+    color: black;
   }

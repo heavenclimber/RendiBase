@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useAlert } from "react-alert";
 
-export default function Home() {
+function Home({ user }) {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const initstate = { title: "", description: "" };
@@ -167,6 +167,7 @@ export default function Home() {
                               <b>{item.jumlah}</b>
                             </div>
 
+                            {user == "admin" ? (
                             <div className="btnContainer">
                               <a onClick={() => openEdit(i)}>Edit Now</a>
                               <a
@@ -176,16 +177,25 @@ export default function Home() {
                                 Remove
                               </a>
                             </div>
-                          </div>
-                          {item.jumlah == "0" ? (
-                            <div className="sellbtncontainer">
-                              <a className="disabled">Out of Stock</a>
-                            </div>
                           ) : (
-                            <div className="sellbtncontainer">
-                              <a onClick={() => sellItem(i)}>Sell</a>
-                            </div>
+                            <></>
                           )}
+                        </div>
+                        {user == "admin" ? (
+                          <div>
+                            {item.jumlah == "0" ? (
+                              <div className="sellbtncontainer">
+                                <a className="disabled">Out of Stock</a>
+                              </div>
+                            ) : (
+                              <div className="sellbtncontainer">
+                                <a onClick={() => sellItem(i)}>Sell</a>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                         </div>
                       </div>
                     );
@@ -211,24 +221,34 @@ export default function Home() {
                             <b style={{ marginRight: 5 }}>Jumlah: </b>
                             <b>{item.jumlah}</b>
                           </div>
-                          <div className="btnContainer">
-                            <a onClick={() => openEdit(i)}>Edit Now</a>
-                            <a
-                              className="removebtn"
-                              onClick={() => removeItem(i)}
-                            >
-                              Remove
-                            </a>
-                          </div>
+                          {user == "admin" ? (
+                            <div className="btnContainer">
+                              <a onClick={() => openEdit(i)}>Edit Now</a>
+                              <a
+                                className="removebtn"
+                                onClick={() => removeItem(i)}
+                              >
+                                Remove
+                              </a>
+                            </div>
+                          ) : (
+                            <></>
+                          )}
                         </div>
-                        {item.jumlah == "0" ? (
-                          <div className="sellbtncontainer">
-                            <a className="disabled">Out of Stock</a>
+                        {user == "admin" ? (
+                          <div>
+                            {item.jumlah == "0" ? (
+                              <div className="sellbtncontainer">
+                                <a className="disabled">Out of Stock</a>
+                              </div>
+                            ) : (
+                              <div className="sellbtncontainer">
+                                <a onClick={() => sellItem(i)}>Sell</a>
+                              </div>
+                            )}
                           </div>
                         ) : (
-                          <div className="sellbtncontainer">
-                            <a onClick={() => sellItem(i)}>Sell</a>
-                          </div>
+                          <></>
                         )}
                       </div>
                     </div>
@@ -257,7 +277,9 @@ export default function Home() {
         <SellModal modalState={setSellModal} data={data} id={selectedId} />
       ) : null}
       {/* <button onClick={sendTodo}>click here to send</button> */}
-      <Button modalState={setOpenModal} />
+      {user=="admin" ? <Button modalState={setOpenModal} /> :<></>}
     </div>
   );
 }
+
+export default Home;
