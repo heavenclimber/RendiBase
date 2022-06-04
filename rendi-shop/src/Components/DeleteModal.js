@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 import firebase from "firebase/compat/app";
 // import arrayUnion from 'firebase/firestore'
 
-function DeleteModal({ modalState, data, id, refresh }) {
+function DeleteModal({ modalState, data, id }) {
   const [isdelete, setIsDelete] = useState(false);
 
   const [tempData, setTempData] = useState(data);

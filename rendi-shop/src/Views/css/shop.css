@@ -137,7 +137,7 @@ a{
   .card-container .card {
     position: relative;
     width: 320px;
-    height: 450px;
+    height: 470px;
     background: #232323;
     border-radius: 20px;
     overflow: hidden;
@@ -172,7 +172,7 @@ a{
   
   .card-container .card .imgBx {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     z-index: 100;
     width: 100%;
@@ -184,8 +184,9 @@ a{
   }
   
   .card-container .card:hover .imgBx {
-    top: 28%;
+    top: 25%;
     transform: translateY(0%);
+  
    
   }
   
@@ -215,14 +216,14 @@ a{
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 150px;
     text-align: center;
     transition: 1s;
     z-index: 10;
   }
   
   .card-container .card:hover .contentBx {
-    height: 210px;
+    height: 230px;
   }
   
   .card-container .card .contentBx h2 {
@@ -230,6 +231,9 @@ a{
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0;
   }
   .card-container .card .contentBx b {
@@ -370,7 +374,7 @@ a{
     background-color: rgba(70, 70, 70, 0.479);
     position: absolute;
     top: 0;
-    z-index: 200;
+    z-index: 300;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -410,4 +414,37 @@ a{
   .deletebtnrow button{
    min-width: 100px;
   }
+
+  .sellbtncontainer{
+    bottom:0;
+    position: absolute;
+    width: 100% !important;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
   
+  .sellbtncontainer a{
+    background-color: #03a9f4;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 200;
+    transition: 0.4s;
+  }
+
+    
+  .sellbtncontainer a:hover{
+    background-color: #0070a4;
+  }
+
+  .spanid{
+    font-weight: 300;
+    font-size: medium;
+    color: rgb(184, 184, 184);
+    margin-right: 5px;
+  }
