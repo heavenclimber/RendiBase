@@ -83,11 +83,9 @@ export default function Home() {
     setDeleteModal(true);
   };
 
-  
-
   const sellItem = (i) => {
     setSelectedId(i);
-    setSellModal(true)
+    setSellModal(true);
   };
 
   return (
@@ -179,9 +177,15 @@ export default function Home() {
                               </a>
                             </div>
                           </div>
-                          <div className="sellbtncontainer">
-                            <a>Sell</a>
-                          </div>
+                          {item.jumlah == "0" ? (
+                            <div className="sellbtncontainer">
+                              <a className="disabled">Out of Stock</a>
+                            </div>
+                          ) : (
+                            <div className="sellbtncontainer">
+                              <a onClick={() => sellItem(i)}>Sell</a>
+                            </div>
+                          )}
                         </div>
                       </div>
                     );
@@ -217,9 +221,15 @@ export default function Home() {
                             </a>
                           </div>
                         </div>
-                        <div className="sellbtncontainer">
-                          <a onClick={() => sellItem(i)}>Sell</a>
-                        </div>
+                        {item.jumlah == "0" ? (
+                          <div className="sellbtncontainer">
+                            <a className="disabled">Out of Stock</a>
+                          </div>
+                        ) : (
+                          <div className="sellbtncontainer">
+                            <a onClick={() => sellItem(i)}>Sell</a>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
