@@ -37,6 +37,16 @@ a{
       align-items: center;
   }
 
+  .iconCat{
+    cursor: pointer;
+    background-color: white;
+    color: #0070a4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    border: 1px solid #111;
+  }
+
   .search-container {
     background: #fff;
     height: 30px;
@@ -127,6 +137,7 @@ a{
       align-items: center;
       flex-wrap: wrap;
       padding: 25px;
+      margin-bottom: 100px;
   }
   
   .card-container {

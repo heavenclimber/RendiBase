@@ -11,7 +11,7 @@ import firebase from "../firebase/index";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faTools, faTree } from "@fortawesome/free-solid-svg-icons";
 import { useAlert } from "react-alert";
 
 function Home({ user }) {
@@ -20,6 +20,9 @@ function Home({ user }) {
   const initstate = { title: "", description: "" };
   const [inputs, setInputs] = useState(initstate);
   const [searchInput, setSearchInput] = useState("");
+
+  const [perkakas, setPerkakas] = useState(false);
+  const [bahan, setBahan] = useState(false);
 
   const [openAddModal, setOpenModal] = useState(false);
 
@@ -110,6 +113,34 @@ function Home({ user }) {
         />
       </div> */}
       <div className="filter-container">
+        {/* <div>
+          <a
+            className="iconCat"
+            style={{
+              backgroundColor: perkakas ? "#1687A7" : null,
+              color: perkakas ? "white" : null,
+            }}
+            onClick={() => {
+              setPerkakas(!perkakas);
+              setBahan(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faTools} />
+          </a>
+          <a
+            className="iconCat"
+            style={{
+              backgroundColor: bahan ? "#1687A7" : null,
+              color: bahan ? "white" : null,
+            }}
+            onClick={() => {
+              setBahan(!bahan);
+              setPerkakas(false);
+            }}
+          >
+            <FontAwesomeIcon icon={faTree} />
+          </a>
+        </div> */}
         <div className="search-container">
           <input
             type="text"
@@ -168,34 +199,34 @@ function Home({ user }) {
                             </div>
 
                             {user == "admin" ? (
-                            <div className="btnContainer">
-                              <a onClick={() => openEdit(i)}>Edit Now</a>
-                              <a
-                                className="removebtn"
-                                onClick={() => removeItem(i)}
-                              >
-                                Remove
-                              </a>
+                              <div className="btnContainer">
+                                <a onClick={() => openEdit(i)}>Edit Now</a>
+                                <a
+                                  className="removebtn"
+                                  onClick={() => removeItem(i)}
+                                >
+                                  Remove
+                                </a>
+                              </div>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                          {user == "admin" ? (
+                            <div>
+                              {item.jumlah == "0" ? (
+                                <div className="sellbtncontainer">
+                                  <a className="disabled">Out of Stock</a>
+                                </div>
+                              ) : (
+                                <div className="sellbtncontainer">
+                                  <a onClick={() => sellItem(i)}>Sell</a>
+                                </div>
+                              )}
                             </div>
                           ) : (
                             <></>
                           )}
-                        </div>
-                        {user == "admin" ? (
-                          <div>
-                            {item.jumlah == "0" ? (
-                              <div className="sellbtncontainer">
-                                <a className="disabled">Out of Stock</a>
-                              </div>
-                            ) : (
-                              <div className="sellbtncontainer">
-                                <a onClick={() => sellItem(i)}>Sell</a>
-                              </div>
-                            )}
-                          </div>
-                        ) : (
-                          <></>
-                        )}
                         </div>
                       </div>
                     );
@@ -277,7 +308,7 @@ function Home({ user }) {
         <SellModal modalState={setSellModal} data={data} id={selectedId} />
       ) : null}
       {/* <button onClick={sendTodo}>click here to send</button> */}
-      {user=="admin" ? <Button modalState={setOpenModal} /> :<></>}
+      {user == "admin" ? <Button modalState={setOpenModal} /> : <></>}
     </div>
   );
 }
