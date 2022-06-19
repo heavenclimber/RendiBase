@@ -113,7 +113,7 @@ function Home({ user }) {
         />
       </div> */}
       <div className="filter-container">
-        <div>
+        {/* <div>
           <a
             className="iconCat"
             style={{
@@ -140,7 +140,7 @@ function Home({ user }) {
           >
             <FontAwesomeIcon icon={faTree} />
           </a>
-        </div>
+        </div> */}
         <div className="search-container">
           <input
             type="text"
