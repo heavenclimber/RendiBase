@@ -17,8 +17,14 @@ export default function Header() {
             <Nav.Link href="home" to={"/home/"}>
               Home
             </Nav.Link>
+            <Nav.Link href="datatabel" to={"/datatabel/"}>
+              Data Table
+            </Nav.Link>
             <Nav.Link href="report" to={"/report/"}>
               Report
+            </Nav.Link>
+            <Nav.Link href="reportmasuk" to={"/reportmasuk/"}>
+              Barang Masuk
             </Nav.Link>
             <Nav.Link
               href="login"
