@@ -3,6 +3,7 @@ import React from "react";
 function Button({ modalState }) {
   const setModal = () => {
     modalState(true);
+    //setOpenModal(true)
   };
   return (
     <div className="add-button-container">

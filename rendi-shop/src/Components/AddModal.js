@@ -2,6 +2,9 @@ import React, { Component, useEffect, useState } from "react";
 import { useAlert } from "react-alert";
 
 import firebase from "firebase/compat/app";
+import ReportAdd from "../Views/ReportAdd";
+import moment from "moment-timezone";
+
 // import arrayUnion from 'firebase/firestore'
 
 function AddModal({ edited, modalState, newid }) {
@@ -26,28 +29,49 @@ function AddModal({ edited, modalState, newid }) {
       dataSet.price !== null &&
       dataSet.type !== null &&
       dataSet.jumlah !== null &&
-      dataSet.image !== null
-        ? firebase
-            .firestore()
-            .collection("data")
-            .doc("NwE7sn9FEaKhmHGzXwmY")
-            // .set("item"[dataSet])
-            // .then((documentReference) => {
-            //   console.log("document reference ID", documentReference.id);
-            // })
-            .update({
-              item: firebase.firestore.FieldValue.arrayUnion(dataSet),
-            })
-            .then((documentReference) => {
-              modalState(false);
-            })
-            .catch((error) => {
-              console.log(error.message);
-            })
-        :  <></>
+      dataSet.image !== null ? (
+        firebase
+          .firestore()
+          .collection("data")
+          .doc("NwE7sn9FEaKhmHGzXwmY")
+          // .set("item"[dataSet])
+          // .then((documentReference) => {
+          //   console.log("document reference ID", documentReference.id);
+          // })
+          .update({
+            item: firebase.firestore.FieldValue.arrayUnion(dataSet),
+          })
+          .then((documentReference) => {
+            ReportAdd(dataSet);
+            modalState(false);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          })
+      ) : (
+        <></>
+      );
     }
   }, [dataSet]);
-  
+
+  const ReportAdd = (dataSet) => {
+    let today = moment().format("dddd, MMMM Do YYYY, HH:mm:ss A").toString();
+    dataSet.date = today;
+    console.log("datase", dataSet);
+    firebase
+      .firestore()
+      .collection("reportmasuk")
+      .doc("itVu3sEExTcn3rb1uT8z")
+      .update({
+        reportmasuk: firebase.firestore.FieldValue.arrayUnion(dataSet),
+      })
+      .then((documentReference) => {
+        // alert.show("Sukses menjual");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const submitData = (e) => {
     e.preventDefault();

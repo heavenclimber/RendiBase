@@ -32,11 +32,31 @@ function Home({ user }) {
   const [openDeleteModal, setDeleteModal] = useState(false);
 
   const [openSellModal, setSellModal] = useState(false);
+  const [tes3, setTes3] = useState();
 
   const alert = useAlert();
 
   useEffect(() => {
     getData();
+    firebase.db
+      .collection("tes3")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((element) => {
+          var res = element.data();
+
+          setTes3(res.baseng);
+          console.log(res.baseng);
+
+          if(tes3){
+            console.log(tes3.isinyo)
+          }
+
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }, [openAddModal]);
 
   const searchItems = (searchValue) => {
