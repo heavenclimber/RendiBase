@@ -5,6 +5,7 @@ import Button from "../Components/Button";
 import AddModal from "../Components/AddModal";
 import EditModal from "../Components/EditModal";
 import DeleteModal from "../Components/DeleteModal";
+import RestockModal from "../Components/RestockModal";
 import SellModal from "../Components/SellModal";
 
 import firebase from "../firebase/index";
@@ -31,6 +32,7 @@ function Home({ user }) {
 
   const [openDeleteModal, setDeleteModal] = useState(false);
 
+  const [openRestockModal, setRestockModal] = useState(false);
   const [openSellModal, setSellModal] = useState(false);
   const [tes3, setTes3] = useState();
 
@@ -38,25 +40,24 @@ function Home({ user }) {
 
   useEffect(() => {
     getData();
-    firebase.db
-      .collection("tes3")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((element) => {
-          var res = element.data();
+    // firebase.db
+    //   .collection("tes3")
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     querySnapshot.forEach((element) => {
+    //       var res = element.data();
 
-          setTes3(res.baseng);
-          console.log(res.baseng);
+    //       setTes3(res.baseng);
+    //       console.log(res.baseng);
 
-          if(tes3){
-            console.log(tes3.isinyo)
-          }
-
-        });
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    //       if (tes3) {
+    //         console.log(tes3.isinyo);
+    //       }
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
   }, [openAddModal]);
 
   const searchItems = (searchValue) => {
@@ -109,6 +110,11 @@ function Home({ user }) {
   const sellItem = (i) => {
     setSelectedId(i);
     setSellModal(true);
+  };
+
+  const restockItem = (i) => {
+    setSelectedId(i);
+    setRestockModal(true);
   };
 
   return (
@@ -232,14 +238,17 @@ function Home({ user }) {
                               <></>
                             )}
                           </div>
+
                           {user == "admin" ? (
                             <div>
                               {item.jumlah == "0" ? (
                                 <div className="sellbtncontainer">
+                                  <a onClick={() => restockItem(i)}>Restock</a>
                                   <a className="disabled">Out of Stock</a>
                                 </div>
                               ) : (
                                 <div className="sellbtncontainer">
+                                  <a onClick={() => restockItem(i)}>Restock</a>
                                   <a onClick={() => sellItem(i)}>Sell</a>
                                 </div>
                               )}
@@ -290,10 +299,12 @@ function Home({ user }) {
                           <div>
                             {item.jumlah == "0" ? (
                               <div className="sellbtncontainer">
+                                <a onClick={() => restockItem(i)}>Restock</a>
                                 <a className="disabled">Out of Stock</a>
                               </div>
                             ) : (
                               <div className="sellbtncontainer">
+                                <a onClick={() => restockItem(i)}>Restock</a>
                                 <a onClick={() => sellItem(i)}>Sell</a>
                               </div>
                             )}
@@ -323,6 +334,9 @@ function Home({ user }) {
           id={selectedId}
           refresh={setOpenModal}
         />
+      ) : null}
+      {openRestockModal ? (
+        <RestockModal modalState={setRestockModal} data={data} id={selectedId} />
       ) : null}
       {openSellModal ? (
         <SellModal modalState={setSellModal} data={data} id={selectedId} />

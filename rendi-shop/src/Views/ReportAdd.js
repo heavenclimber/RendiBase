@@ -98,7 +98,8 @@ export default function ReportAdd() {
               <tr>
                 <th>#ID</th>
                 <th>Barang</th>
-                <th>Jumlah</th>
+                <th>Jumlah Restock</th>
+                <th>Total Stock</th>
                 <th>Harga</th>
                 <th>Tipe</th>
                 <th>Tanggal Masuk</th>
@@ -118,6 +119,7 @@ export default function ReportAdd() {
                     <tr>
                       <th>{item.id}</th>
                       <th>{item.name}</th>
+                      <th>{item.jumlahrestock}</th>
                       <th>{item.jumlah}</th>
                       <th>{item.price}</th>
                       <th>{item.type}</th>
@@ -129,6 +131,7 @@ export default function ReportAdd() {
                     <tr>
                     <th>{item.id}</th>
                     <th>{item.name}</th>
+                    <th>{item.jumlahrestock}</th>
                     <th>{item.jumlah}</th>
                     <th>{item.price}</th>
                     <th>{item.type}</th>
