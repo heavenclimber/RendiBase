@@ -57,6 +57,7 @@ function AddModal({ edited, modalState, newid }) {
   const ReportAdd = (dataSet) => {
     let today = moment().format("dddd, MMMM Do YYYY, HH:mm:ss A").toString();
     dataSet.date = today;
+    dataSet.jumlahrestock = dataSet.jumlah
     console.log("datase", dataSet);
     firebase
       .firestore()
