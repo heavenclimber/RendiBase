@@ -116,7 +116,7 @@ export default function ReportAdd() {
                   !show
                 ) {
                   return (
-                    <tr>
+                    <tr key={i}>
                       <th>{item.id}</th>
                       <th>{item.name}</th>
                       <th>{item.jumlahrestock}</th>
@@ -128,15 +128,15 @@ export default function ReportAdd() {
                   );
                 } else if (show) {
                   return (
-                    <tr>
-                    <th>{item.id}</th>
-                    <th>{item.name}</th>
-                    <th>{item.jumlahrestock}</th>
-                    <th>{item.jumlah}</th>
-                    <th>{item.price}</th>
-                    <th>{item.type}</th>
-                    <th>{item.date}</th>
-                  </tr>
+                    <tr key={i}>
+                      <th>{item.id}</th>
+                      <th>{item.name}</th>
+                      <th>{item.jumlahrestock}</th>
+                      <th>{item.jumlah}</th>
+                      <th>{item.price}</th>
+                      <th>{item.type}</th>
+                      <th>{item.date}</th>
+                    </tr>
                   );
                 }
               })}
